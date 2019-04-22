@@ -8,7 +8,7 @@ Excercise1
             from customers, offices, employees where salesRepEmployeeNumber=employeeNumber and employees.officeCode=offices.officeCode
             group by customerName;
 
-https://i.imgur.com/wxvUdrO.png
+![image](https://i.imgur.com/wxvUdrO.png)
 
 As seen above, I have one red table offices that performs a full scan which is costly with only 7 rows, as it has to search through all the elements in the table. The employees and customers table has archived a very low costs performance as it only had to go through 3 and 7 rows. The total cost is 39.80 with 175 rows and the GROUP operation is insignificant in this situation.
 
@@ -64,12 +64,12 @@ The execution plan is for a GROUP BY query.
 
 
 
-https://i.imgur.com/0a7aBO5.png
+![image](https://i.imgur.com/0a7aBO5.png)
  
  
 For windowing
  
-https://i.imgur.com/r60s02i.png
+![image](https://i.imgur.com/r60s02i.png)
  
 The cost for windowing is significantly higher than the group query.
 
@@ -101,7 +101,7 @@ With joins
             select Title, users.Id, Text, OwnerUserId from posts, users, comments
             where Title LIKE '%grounds%' and posts.Id = comments.PostId and users.Id = OwnerUserId;
 
-https://i.imgur.com/AJDC7n5.png
+![image](https://i.imgur.com/AJDC7n5.png)
  
 Using joins with UserId instead of DisplayUsername makes no real difference as mysql will not be affected much by use of joins. There might be one full scan table but the other joins will not cost much due to not performing full scan for the joined tables.  
 
@@ -131,5 +131,5 @@ The Boolean text search and the full text search in this example are very low co
             Select Title, OwnerUserId, users.Id from posts, users, comments where match(Title) AGAINST ('coffee' in boolean mode)
             and posts.Id = comments.PostId and users.Id = OwnerUserId;
 
-https://i.imgur.com/oZXUzyd.png
+![image](https://i.imgur.com/oZXUzyd.png)
 
